@@ -1,46 +1,36 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Título do aplicativo
-st.title("Análise de Dados do Buteco")
+# Substitua pelo caminho do seu arquivo CSV
+caminho_csv = 'seuarquivo.csv'
 
-# Carregar o arquivo CSV
-file = st.file_uploader("Escolha um arquivo CSV", type='csv')
+# Lê o arquivo CSV
+df = pd.read_csv(caminho_csv)
 
-if file is not None:
-    # Ler o arquivo CSV
-    data = pd.read_csv(file)
+# Exemplo 1: Gráfico de barras - Qual região tem mais botecos
+# Supondo que exista uma coluna chamada 'regiao'
+if 'regiao' in df.columns:
+    contagem_regioes = df['regiao'].value_counts()
+    contagem_regioes.plot(kind='bar', color='skyblue')
+    plt.title('Quantidade de botecos por região')
+    plt.xlabel('Região')
+    plt.ylabel('Quantidade de botecos')
+    plt.show()
+else:
+    print("A coluna 'regiao' não foi encontrada no seu CSV.")
 
-    # Mostrar os dados
-    st.write("Dados Carregados:")
-    st.dataframe(data)
-
-    # Gráfico de Análise: Quantidade de botecos por bairro
-    st.subheader("Quantidade de Botecos por Bairro")
-    
-    # Contar a quantidade de botecos por bairro
-    bairro_counts = data['bairro'].value_counts()
-
-    # Criar o gráfico
-    plt.figure(figsize=(10, 5))
-    bairro_counts.plot(kind='bar', color='skyblue')
-    plt.xlabel('Bairro')
-    plt.ylabel('Quantidade de Botecos')
-    plt.title('Quantidade de Botecos por Bairro')
-    plt.xticks(rotation=45)
-    st.pyplot(plt)
-
-    # Gráfico de Análise: Pratos mais populares
-    st.subheader("Pratos Mais Populares")
-    
-    # Contar a quantidade de pratos
-    prato_counts = data['prato'].value_counts()
-
-    # Criar o gráfico
-    plt.figure(figsize=(10, 5))
-    prato_counts.plot(kind='bar', color='lightgreen')
-    plt.xlabel('Prato')
+# Exemplo 2: Gráfico de barras - Distribuição de outro campo (exemplo: 'tipo')
+if 'tipo' in df.columns:
+    contagem_tipo = df['tipo'].value_counts()
+    contagem_tipo.plot(kind='bar', color='salmon')
+    plt.title('Distribuição por tipo')
+    plt.xlabel('Tipo')
     plt.ylabel('Quantidade')
-    plt.title('Pratos Mais Populares')
-    plt.xticks(rotation=45)
-    st.pyplot(plt)
+    plt.show()
+
+# Exemplo 3: Gráfico de pizza - Percentual de botecos por região
+if 'regiao' in df.columns:
+    df['regiao'].value_counts().plot(kind='pie', autopct='%1.1f%%', startangle=90)
+    plt.title('Percentual de botecos por região')
+    plt.ylabel('')
+    plt.show()

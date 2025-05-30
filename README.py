@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Substitua pelo caminho do seu arquivo CSV
-caminho_csv = 'seuarquivo.csv'
+caminho_csv = 'butecos.csv'
 
 # Lê o arquivo CSV
 df = pd.read_csv(caminho_csv)

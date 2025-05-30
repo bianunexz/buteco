@@ -1,8 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Coloque seu arquivo CSV na mesma pasta e troque o nome aqui se precisar
-caminho_csv = 'botecos.csv'
+caminho_csv = 'butecos.csv'
 
 try:
     df = pd.read_csv(caminho_csv)

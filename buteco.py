@@ -7,13 +7,13 @@ st.set_page_config(page_title="Análise dos Butecos", layout="wide")
 st.title("Análise dos Butecos do Rio")
 st.write("Visualização de dados dos butecos: bairros, pratos e frequência dos bares.")
 
-# URL do CSV no GitHub
-csv_url = 'https://raw.githubusercontent.com/bianunexz/buteco.py/main/butecos.csv'
+# ✅ URL corrigida
+csv_url = 'https://raw.githubusercontent.com/bianunexz/buteco/main/butecos.csv'
 
 try:
     data = pd.read_csv(csv_url)
-except Exception:
-    st.error("Não foi possível carregar os dados do GitHub.")
+except Exception as e:
+    st.error(f"Não foi possível carregar os dados do GitHub: {e}")
     st.stop()
 
 # Limpeza básica
@@ -73,5 +73,3 @@ plt.xlabel('Nome do Bar')
 plt.ylabel('Frequência')
 plt.xticks(rotation=45)
 st.pyplot(fig5)
-
-
